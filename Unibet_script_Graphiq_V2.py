@@ -60,7 +60,7 @@ while True:
 
 # Initialisez le tableau avec l'en-tête des colonnes
 jeux = [
-    [" TYPE       ", "Nbr Games ", "X2Win ", "X3Win ", "X5Win ", "X10Win ", "X10Lost ", "X25Win ", "X100 ", "X1000 ","ITM ","Net chips/Game ","ROI sans RB "," Gains Nets  ","   Rake  "," RB " + str(Tx_RB)+"% ", "Tps de Jeu "," Games/Hr ", "TxHr avec RB", " RB62% + Gains Nets"]
+    [" TYPE       ", "Nbr Games ", "X2Win ", "X3Win ", "X5Win ", "X10Win ", "X10Lost ", "X25Win ", "X100 ", "X1000 ","ITM ","Net chips/Game ","ROI sans RB "," Gains Nets  ","   Rake  "," RB " + str(Tx_RB)+"% ", "Tps de Jeu "," Games/Hr ", "TxHr avec RB", " RB " + str(Tx_RB) + "% " + "Gains Nets"]
 ]
 
 Aff_Stat_game = "TYPE \t\t|TOTAL \t|X2w\t|X3w\t|X5w\t|X10w\t|X10L\t|X25\t|X100\t|X1000\t|% Win     \t|net chips     \t|ROI     \t|Gains   \t|RB 20,0% \t|Temps \t| Tx Hr(RB)\n"
