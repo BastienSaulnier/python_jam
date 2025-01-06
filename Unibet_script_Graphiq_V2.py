@@ -266,7 +266,11 @@ for game_type, buy_ins in game_data.items():
         roi = (total_gain / total_buy_in) * 100
         Rake_gener = buy_in * len(data_points)* 0.06854
 
-        RB = (Tx_RB /100) * Rake_gener 
+        RB = (Tx_RB /100) * Rake_gener
+
+        # Calculer le RB + Gains total
+        RBGain = RB + total_gain
+
         if game_type == "Banzai":
             ITM = (X2w_B[int(buy_in)] + X3w_B[int(buy_in)] + X5w_B[int(buy_in)] + X10w_B[int(buy_in)] + X25w_B[int(buy_in)] + X100w_B[int(buy_in)] + X1000w_B[int(buy_in)]   )*100/len(data_points)
             Chips = ((ITM/100)*900)-300
@@ -275,11 +279,11 @@ for game_type, buy_ins in game_data.items():
             Aff_Stat_game = Aff_Stat_game + "\t|" + str(round(ITM,1)) + "%   \t|" + str(round(Chips,1)) + "    \t|" + str(round(roi,2)) + "%   \t|" + str(total_gain) + "€   \t|" + str(round(RB,2)) + "€   \t|" 
             Aff_Stat_game = Aff_Stat_game +  str(round(Temps_B[int(buy_in)],1)) + " \t|"
             if (Temps_B[int(buy_in)] != 0):
-                Aff_Stat_game = Aff_Stat_game + str(round((total_gain + RB)/Temps_B[int(buy_in)],2)) + "€/hr\n"
-                jeux.append([game_type + " " + str(buy_in), str(len(data_points)), str(X2w_B[int(buy_in)]), str(X3w_B[int(buy_in)]), str(X5w_B[int(buy_in)]), str(X10w_B[int(buy_in)]), str(X10L_B[int(buy_in)]), str(X25w_B[int(buy_in)]), str(X100w_B[int(buy_in)]), str(X1000w_B[int(buy_in)]),str(round(ITM,1))+"%",str(round(Chips,1)),str(round(roi,2))+"%",str(total_gain)+"€",str(round(Rake_gener,0))+"€",str(round(RB,0))+"€", str(round(Temps_B[int(buy_in)],1)) + "Hrs",str(round(len(data_points)/Temps_B[int(buy_in)],1)) + " G/Hr", str(round((total_gain + RB)/Temps_B[int(buy_in)],2))+ "€/hr\n"])    
+                Aff_Stat_game = Aff_Stat_game + str(round((total_gain + RB)/Temps_B[int(buy_in)],2)) + "€/hr \t|" + str(round(RBGain)) + "€ \n"
+                jeux.append([game_type + " " + str(buy_in), str(len(data_points)), str(X2w_B[int(buy_in)]), str(X3w_B[int(buy_in)]), str(X5w_B[int(buy_in)]), str(X10w_B[int(buy_in)]), str(X10L_B[int(buy_in)]), str(X25w_B[int(buy_in)]), str(X100w_B[int(buy_in)]), str(X1000w_B[int(buy_in)]),str(round(ITM,1))+"%",str(round(Chips,1)),str(round(roi,2))+"%",str(total_gain)+"€",str(round(Rake_gener,0))+"€",str(round(RB,0))+"€", str(round(Temps_B[int(buy_in)],1)) + "Hrs",str(round(len(data_points)/Temps_B[int(buy_in)],1)) + " G/Hr", str(round((total_gain + RB)/Temps_B[int(buy_in)],2))+ "€/hr", str(round(RBGain)) + "€ \n"])
             else:
-                Aff_Stat_game = Aff_Stat_game +  "--   \n"
-                jeux.append([game_type + " " + str(buy_in), str(len(data_points)), str(X2w_B[int(buy_in)]), str(X3w_B[int(buy_in)]), str(X5w_B[int(buy_in)]), str(X10w_B[int(buy_in)]), str(X10L_B[int(buy_in)]), str(X25w_B[int(buy_in)]), str(X100w_B[int(buy_in)]), str(X1000w_B[int(buy_in)]),str(round(ITM,1))+"%",str(round(Chips,1)),str(round(roi,2))+"%",str(total_gain)+"€",str(round(Rake_gener,0))+"€",str(round(RB,0))+"€", str(round(Temps_B[int(buy_in)],1)) + "Hrs"," - ", " - €/hr\n"])    
+                Aff_Stat_game = Aff_Stat_game +  "--   \t|" + str(round(RBGain)) + "€ \n"
+                jeux.append([game_type + " " + str(buy_in), str(len(data_points)), str(X2w_B[int(buy_in)]), str(X3w_B[int(buy_in)]), str(X5w_B[int(buy_in)]), str(X10w_B[int(buy_in)]), str(X10L_B[int(buy_in)]), str(X25w_B[int(buy_in)]), str(X100w_B[int(buy_in)]), str(X1000w_B[int(buy_in)]),str(round(ITM,1))+"%",str(round(Chips,1)),str(round(roi,2))+"%",str(total_gain)+"€",str(round(Rake_gener,0))+"€",str(round(RB,0))+"€", str(round(Temps_B[int(buy_in)],1)) + "Hrs"," - ", " - €/hr", str(round(RBGain)) + "€ \n"])
             
                 
                 
@@ -295,11 +299,11 @@ for game_type, buy_ins in game_data.items():
             Aff_Stat_game = Aff_Stat_game + "    \t|" + str(round(roi,2)) + "%   \t|" + str(total_gain) + "€   \t|" + str(round(RB,2)) + "€   \t|"
             Aff_Stat_game = Aff_Stat_game +  str(round(Temps_H[int(buy_in)],1)) + " \t|"
             if (Temps_H[int(buy_in)] != 0):
-                Aff_Stat_game = Aff_Stat_game + str(round((total_gain + RB)/Temps_H[int(buy_in)],2)) + "€/Hr\n"
-                jeux.append([game_type + " " + str(buy_in), str(len(data_points)), str(X2w_H[int(buy_in)]), str(X3w_H[int(buy_in)]), str(X5w_H[int(buy_in)]), str(X10w_H[int(buy_in)]), str(X10L_H[int(buy_in)]), str(X25w_H[int(buy_in)]), str(X100w_H[int(buy_in)]), str(X1000w_H[int(buy_in)]),str(round(ITM,1))+"%",str(round(Chips,1)),str(round(roi,2))+"%",str(total_gain)+"€",str(round(Rake_gener,0))+"€",str(round(RB,0))+"€", str(round(Temps_H[int(buy_in)],1)) + "Hrs",str(round(len(data_points)/Temps_H[int(buy_in)],1))+ " G/Hr", str(round((total_gain + RB)/Temps_H[int(buy_in)],2))+ "€/hr\n"])    
+                Aff_Stat_game = Aff_Stat_game + str(round((total_gain + RB)/Temps_H[int(buy_in)],2)) + "€/Hr \t|" + str(round(RBGain)) + "€ \n"
+                jeux.append([game_type + " " + str(buy_in), str(len(data_points)), str(X2w_H[int(buy_in)]), str(X3w_H[int(buy_in)]), str(X5w_H[int(buy_in)]), str(X10w_H[int(buy_in)]), str(X10L_H[int(buy_in)]), str(X25w_H[int(buy_in)]), str(X100w_H[int(buy_in)]), str(X1000w_H[int(buy_in)]),str(round(ITM,1))+"%",str(round(Chips,1)),str(round(roi,2))+"%",str(total_gain)+"€",str(round(Rake_gener,0))+"€",str(round(RB,0))+"€", str(round(Temps_H[int(buy_in)],1)) + "Hrs",str(round(len(data_points)/Temps_H[int(buy_in)],1))+ " G/Hr", str(round((total_gain + RB)/Temps_H[int(buy_in)],2))+ "€/hr", str(round(RBGain)) + "€ \n"])
             else:
-                Aff_Stat_game = Aff_Stat_game +  "--   \n"  
-                jeux.append([game_type + " " + str(buy_in), str(len(data_points)), str(X2w_H[int(buy_in)]), str(X3w_H[int(buy_in)]), str(X5w_H[int(buy_in)]), str(X10w_H[int(buy_in)]), str(X10L_H[int(buy_in)]), str(X25w_H[int(buy_in)]), str(X100w_H[int(buy_in)]), str(X1000w_H[int(buy_in)]),str(round(ITM,1))+"%",str(round(Chips,1)),str(round(roi,2))+"%",str(total_gain)+"€",str(round(Rake_gener,0))+"€",str(round(RB,0))+"€", str(round(Temps_H[int(buy_in)],1)) + "Hrs"," - ", " - €/hr\n"])    
+                Aff_Stat_game = Aff_Stat_game +  "--   \t|" + str(round(RBGain)) + "€ \n"
+                jeux.append([game_type + " " + str(buy_in), str(len(data_points)), str(X2w_H[int(buy_in)]), str(X3w_H[int(buy_in)]), str(X5w_H[int(buy_in)]), str(X10w_H[int(buy_in)]), str(X10L_H[int(buy_in)]), str(X25w_H[int(buy_in)]), str(X100w_H[int(buy_in)]), str(X1000w_H[int(buy_in)]),str(round(ITM,1))+"%",str(round(Chips,1)),str(round(roi,2))+"%",str(total_gain)+"€",str(round(Rake_gener,0))+"€",str(round(RB,0))+"€", str(round(Temps_H[int(buy_in)],1)) + "Hrs"," - ", " - €/hr", str(round(RBGain)) + "€ \n"])
 
         
         # Tracer la courbe avec des points plus petits
