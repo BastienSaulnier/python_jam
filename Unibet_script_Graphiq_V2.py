@@ -288,7 +288,7 @@ for game_type, buy_ins in game_data.items():
                 
         else :
             ITM = (X2w_H[int(buy_in)] + X3w_H[int(buy_in)] + X5w_H[int(buy_in)] + X10w_H[int(buy_in)] + X25w_H[int(buy_in)] + X100w_H[int(buy_in)] + X1000w_H[int(buy_in)]   )* 100/len(data_points)
-            Chips = ((ITM/100)*1500)-500
+            Chips = ((ITM/100)*900)-300
             Aff_Stat_game =  Aff_Stat_game + game_type + " " + str(buy_in) + "\t|" + str(len(data_points)) + "\t|" + str(X2w_B[int(buy_in)]) + "\t|" + str(X3w_B[int(buy_in)])
             Aff_Stat_game = Aff_Stat_game + "\t| " + str(X5w_H[int(buy_in)]) + "\t| " + str(X10w_H[int(buy_in)]) + "\t| " + str(X10L_H[int(buy_in)]) + "\t| " + str(X25w_H[int(buy_in)])
             Aff_Stat_game = Aff_Stat_game + "\t| " + str(X100w_H[int(buy_in)]) + "\t| " + str(X1000w_H[int(buy_in)]) + "\t|" + str(round(ITM,1)) + "%   \t|" + str(round(Chips,1)) 
